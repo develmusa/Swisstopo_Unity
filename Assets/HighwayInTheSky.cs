@@ -23,6 +23,9 @@ internal class HighwayInTheSky
     private List<HITSSegment> GenerateHITSSegments(List<WayPointPath> wayPointPathList)
     {
         List<HITSSegment> hitsSegments = new List<HITSSegment>();
+
+        var distanceBetweenLastGateAndWayPointEndPoint = 0f;
+
         foreach (var wayPointPath in wayPointPathList)
         {
             HITSSegment previousHitsSegment = null;
@@ -31,8 +34,9 @@ internal class HighwayInTheSky
                 Vector3 startRot = Vector3.left;
                 if (previousHitsSegment == null)
                 {
-                    var endPoint = wayPointPath.startPoint.transform.position + (wayPointPath.Heading * distanceBetweenGates);
-                    var startPoint = wayPointPath.startPoint.transform.position;
+                    var startPoint = wayPointPath.startPoint.transform.position + (wayPointPath.Heading * (distanceBetweenGates-distanceBetweenLastGateAndWayPointEndPoint));
+                    var endPoint = startPoint + (wayPointPath.Heading * distanceBetweenGates);
+                    
                     previousHitsSegment = new HITSSegment(startPoint, endPoint, Quaternion.FromToRotation(startRot, wayPointPath.Heading));
                     hitsSegments.Add(previousHitsSegment);
                 }
@@ -42,6 +46,10 @@ internal class HighwayInTheSky
                    hitsSegments.Add(previousHitsSegment);
                 }
             }
+
+           distanceBetweenLastGateAndWayPointEndPoint =(wayPointPath.endPoint.transform.position - previousHitsSegment.startPoint).magnitude;
+
+
         }
 
         return hitsSegments;
