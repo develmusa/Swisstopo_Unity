@@ -1,0 +1,10 @@
+https://alastaira.wordpress.com/2013/11/12/importing-dem-terrain-heightmaps-for-unity-using-gdal/
+
+
+
+gdalinfo D:\in.tif -stats
+gdal_translate -ot UInt16 -scale 0 5000 0 65535 -outsize 2048 2048 -of ENVI D:\in.tif D:\out.raw
+
+
+unity importing
+Bit16 - Byte Order Windows - Flip Vertical - TerrainSize = Scalingfactor max zb(5000)
