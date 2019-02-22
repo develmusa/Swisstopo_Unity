@@ -9,13 +9,14 @@ internal class HighwayInTheSky
 
     public List<HITSSegment> hitsSegmentList = new List<HITSSegment>();
 
-    public float distanceBetweenGates = 2f;
+    private float distanceBetweenGates = 2f;
 
-    public GameObject GatePrefab { get; }
+    private GameObject GatePrefab { get; }
 
-    public HighwayInTheSky(List<WayPointPath> wayPointPathList, GameObject gatePrefab)
+    public HighwayInTheSky(List<WayPointPath> wayPointPathList, GameObject gatePrefab, float distanceBetweenGates)
     {
         this.wayPointPathList = wayPointPathList;
+        this.distanceBetweenGates = distanceBetweenGates;
         GatePrefab = gatePrefab;
         hitsSegmentList = GenerateHITSSegments(wayPointPathList);
     }

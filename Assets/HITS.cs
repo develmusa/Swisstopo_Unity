@@ -14,6 +14,8 @@ public class HITS : MonoBehaviour
 
     private HighwayInTheSky highwayInTheSky;
 
+    public float distanceBetweenGates = 2f;
+
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +29,7 @@ public class HITS : MonoBehaviour
         }
         SetWayPointPaths(WaypointsList);
 
-        highwayInTheSky = new HighwayInTheSky(wayPointPathList, GatePrefab);
+        highwayInTheSky = new HighwayInTheSky(wayPointPathList, GatePrefab, distanceBetweenGates);
 
         foreach (var hitsSegment in highwayInTheSky.hitsSegmentList)
         {
