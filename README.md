@@ -1,7 +1,7 @@
 # Swisstopo_Unity
 Data from Swisstopo into Unity
 
-## Heigh model
+## DEM
 Download: https://trac.osgeo.org/osgeo4w/
 ```bash
 gdalinfo map.tif -stats
